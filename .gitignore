@@ -39,3 +39,4 @@ lerna-debug.log*
 node_modules
 dist
 .vscode
+.env.docker

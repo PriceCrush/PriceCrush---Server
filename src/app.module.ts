@@ -10,7 +10,6 @@ import { ProductsModule } from './apis/products/products.module';
 import { UsersModule } from './apis/users/users.module';
 import { AuthModule } from './apis/auth/auth.module';
 
-
 @Module({
   imports: [
     FileModule,
@@ -26,7 +25,7 @@ import { AuthModule } from './apis/auth/auth.module';
       synchronize: true,
       logging: true,
     }),
-    ProductsModule,
+    // ProductsModule,
     UsersModule,
     AuthModule,
   ],

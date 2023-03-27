@@ -1,36 +1,22 @@
-import { Controller, Post, Req, Res } from '@nestjs/common';
-import {
-  ApiBearerAuth,
-  ApiBody,
-  ApiConsumes,
-  ApiOperation,
-  ApiTags,
-} from '@nestjs/swagger';
+import { Controller, Delete, Get, Param } from '@nestjs/common';
+import { ProductImageService } from './productImage.service';
 
 @Controller('productImage')
-@ApiTags('상품 이미지 업로드 API')
 export class ProductImageController {
   constructor(private readonly productImageService: ProductImageService) {}
 
-  @ApiBearerAuth()
-  @Post()
-  @ApiOperation({
-    summary: '상품 이미지 업로드',
-    description: '상품 이미지 업로드 API',
-  })
-  @ApiBody({
-    required: true,
-    type: 'multipart/form-data',
-    schema: {
-      type: 'object',
-      properties: {
-        upload: {
-          type: 'string',
-          format: 'binary',
-        },
-      },
-    },
-  })
-  @ApiConsumes('multipart/form-data')
-  async create(@Req() request, @Res() response) {}
+  @Get('/')
+  async getAllImage() {
+    return await this.productImageService.fetchAll();
+  }
+
+  @Get('/:id')
+  getProductImage(@Param('id') productID: string) {
+    return this.productImageService.findOne({ productID });
+  }
+
+  @Delete('/:id')
+  deleteProductImage(@Param('id') productID: string) {
+    return this.productImageService.delete({ productID });
+  }
 }

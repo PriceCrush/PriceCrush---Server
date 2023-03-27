@@ -10,13 +10,24 @@ export class ProductImageService {
     private readonly productImageRepository: Repository<ProductImage>,
   ) {}
 
-  find({ ProductID }) {
+  async fetchAll() {
+    return await this.productImageRepository.find();
+  }
+
+  findOne({ productID }) {
     return this.productImageRepository.find({
       where: {
-        Product: {
-          id: ProductID,
+        product: {
+          id: productID,
         },
       },
     });
+  }
+
+  async delete({ productID }) {
+    const result = await this.productImageRepository.delete({
+      product: { id: productID },
+    });
+    return result.affected ? '삭제 성공' : '삭제 실패';
   }
 }

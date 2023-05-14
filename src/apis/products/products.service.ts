@@ -18,7 +18,7 @@ export class ProductsService {
     @InjectRepository(Auction)
     private readonly auctiontRepository: Repository<Auction>,
     private readonly schedulerRegistry: SchedulerRegistry,
-  ) {}
+  ) { }
 
   async create({ userId, createProductInput, files }) {
     if (!files) {
@@ -76,6 +76,23 @@ export class ProductsService {
     const result = await this.productRepository.find({
       relations: ['productCategory', 'productImage'],
     });
+    return result;
+  }
+
+  async findHotProducts() {
+    // const result = await this.productRepository.find({where:{}});
+    const now = new Date(new Date().getTime() + 1000 * 60 * 60 * 9);
+    const result = await this.productRepository.find({
+      where: {
+        end_date: MoreThan(now),
+      },
+      order: {
+        bidCount: 'DESC',
+      },
+      take: 10,
+      relations: ['productCategory', 'productImage'],
+    });
+    console.log(result);
     return result;
   }
 

@@ -47,6 +47,10 @@ export class Product {
   @ApiProperty({ description: '최소 입찰 단위' })
   minBidPrice: string;
 
+  @Column({ default: 0 })
+  @ApiProperty({ description: '입찰 횟수' })
+  bidCount: number;
+
   @DeleteDateColumn()
   @ApiProperty({ description: '상품 삭제 일/시' })
   deletedAt: Date;

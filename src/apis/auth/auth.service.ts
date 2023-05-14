@@ -26,7 +26,7 @@ export class AuthService {
       { secret: 'myRefreshKey', expiresIn: '2w' },
     );
     // 이후 보안 설정 추가 필요함.
-    res.setHeader('Access-Control-Allow-Crdential', 'true');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Set-Cookie', `myRefreshKey=${refreshToken}`);
     return;
   }

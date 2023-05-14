@@ -38,7 +38,7 @@ export class AuctionService {
       where: {
         user: { id: userId },
         product: {
-          end_date: LessThan(
+          end_date: MoreThan(
             new Date(new Date().getTime() + 1000 * 60 * 60 * 9),
           ),
         },

@@ -54,8 +54,8 @@ export class UsersService {
     const specialCharacters = '!@#$%^&*(),.?:{}|<>';
     const numbers = '0123456789';
 
-    // 비밀번호 길이 4 ~ 16으로 지정
-    const passwordLength = Math.floor(Math.random() * 13 + 4);
+    // 비밀번호 길이 6자리로 지정
+    const passwordLength = 6;
     let temPassword = '';
 
     // passwordLength에서 2를 뺀 갯수만큼 영어로 채워줌

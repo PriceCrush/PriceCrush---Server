@@ -41,7 +41,7 @@ import { ScheduleModule } from '@nestjs/schedule';
   providers: [AppService, jwtAccessStrategy, jwtRefreshStrategy],
 })
 export class AppModule {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
   async onModuleInit() {
     await this.appService.reset();
   }

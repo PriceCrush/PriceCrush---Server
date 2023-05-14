@@ -35,7 +35,7 @@ export class ProductsController {
   constructor(
     private readonly productsService: ProductsService,
     private readonly schedulerRegistry: SchedulerRegistry,
-  ) {}
+  ) { }
 
   //----------------- 생성 -----------------------//
   @UseGuards(RestAuthAccessGuard)
@@ -58,6 +58,7 @@ export class ProductsController {
     @Request() req,
     @UploadedFiles() files: Express.MulterS3.File,
   ) {
+    console.log(createproductRequest);
     const createProductInput = JSON.parse(createproductRequest);
     const userId = req.user.id;
     const product = await this.productsService.create({
@@ -118,6 +119,21 @@ export class ProductsController {
     return await this.productsService.findAll();
   }
 
+  //----------------- 경매 많은 상품 조회 -----------------------//
+  // 하나의 api로 여러개의 옵션을 주는 방향이 나은가?
+  @Get('/best')
+  @ApiOperation({
+    summary: '인기 상품 전체 조회',
+    description: '상품 전체 조회 API',
+  })
+  @ApiResponse({
+    description: '상품 리스트가 리턴됩니다',
+    type: [Product],
+  })
+  async getHotProducts() {
+    return await this.productsService.findHotProducts();
+  }
+
   //----------------- 상품상세조회 -----------------------//
   @Get('/:id')
   @ApiOperation({
@@ -128,6 +144,7 @@ export class ProductsController {
   async getProduct(@Param('id') id: string) {
     return await this.productsService.find({ productId: id });
   }
+
   //-----------------카테고리별 상품조회 -----------------------//
   @Get('/category/:categoryId')
   @ApiOperation({

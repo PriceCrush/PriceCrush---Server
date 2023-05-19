@@ -35,7 +35,7 @@ export class ProductsController {
   constructor(
     private readonly productsService: ProductsService,
     private readonly schedulerRegistry: SchedulerRegistry,
-  ) { }
+  ) {}
 
   //----------------- 생성 -----------------------//
   @UseGuards(RestAuthAccessGuard)

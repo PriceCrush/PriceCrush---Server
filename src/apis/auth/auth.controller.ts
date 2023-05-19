@@ -68,7 +68,7 @@ export class AuthController {
     };
   }
 
-  // @UseGuards(RestAuthRefreshGuard)
+  @UseGuards(RestAuthRefreshGuard)
   @Post('refresh')
   @ApiOperation({
     summary: 'access token 발급',

@@ -17,7 +17,7 @@ export class AuctionService {
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
     private readonly productService: ProductsService,
-  ) { }
+  ) {}
   // private readonly auctions: AuctionInterface[] = [
   //   { id: '1', user_id: 'auction1', prod_id: 'prod_1', price: 1000 },
   //   { id: '2', user_id: 'auction2', prod_id: 'prod_2', price: 1000 },

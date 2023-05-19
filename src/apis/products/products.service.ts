@@ -18,7 +18,7 @@ export class ProductsService {
     @InjectRepository(Auction)
     private readonly auctiontRepository: Repository<Auction>,
     private readonly schedulerRegistry: SchedulerRegistry,
-  ) { }
+  ) {}
 
   async create({ userId, createProductInput, files }) {
     if (!files) {
